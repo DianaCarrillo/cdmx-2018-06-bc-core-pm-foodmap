@@ -3,7 +3,7 @@
     font-family: 'Leckerli One', cursive;
 }
 
-#container {
+.foodm-cont {
     margin-top: 50%;
 }
 
@@ -22,4 +22,8 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+.label-select{
+    font-size: 100%
 }
