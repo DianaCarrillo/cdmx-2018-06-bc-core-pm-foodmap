@@ -11,7 +11,7 @@
              * element that contains the map. */
 
 #map {
-    height: 30%;
+    height: 40%;
     margin: 3% 3%;
 }
 
@@ -27,4 +27,22 @@ body {
 .label-select{
     font-size: 100%;
     font-family: 'Righteous', cursive;
+}
+
+.restaurant-list{
+    list-style: none;
+    margin: 10%;
+}
+
+.badRestaurant{
+    color: red;
+    font-weight: bold;
+}
+
+.goodRestaurant {
+    color: rgb(151, 228, 35);
+    font-weight: bold;
+}
+.goldStar{
+    color: #c0ca33;
 }
