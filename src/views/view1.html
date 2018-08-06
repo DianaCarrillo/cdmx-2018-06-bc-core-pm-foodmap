@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Leckerli+One|Tenali+Ramakrishna" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Leckerli+One|Tenali+Ramakrishna|Righteous" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
   <link rel="stylesheet" href="../css/main.css">
   <title>Foodmap</title>
@@ -15,9 +15,9 @@
   <div id="map"></div>
   <div class="container center col s12 m12 l12">
     <div class "row">
-      <p class="label-select">Encuentra los restaurantes más cercanos</p>
-      <div class="row">
-        <input type="text" placeholder="Busca el restaurante más cercano">
+      <p class="label-select">¡Encuentra los restaurantes más cercanos!</p>
+      <div class="row col s6 m6 l6">
+        <input type="text" placeholder="¿Qué se te antoja hoy?">
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
         radius: '500',
         type: ['restaurant']
       };
-
+      infowindow = new google.maps.InfoWindow();
       service = new google.maps.places.PlacesService(map);
       service.nearbySearch(request, callback);
     }
@@ -58,8 +58,13 @@
       var marker = new google.maps.Marker({
         map: map,
         position: placeLoc
+      });
+      google.maps.event.addListener(marker, 'click', function(){
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
       })
-    }
+    } 
+
     // google.maps.event.DomListener(window,'load',initMap);
   </script>
 <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZInQn8sz4LQGT78cscX0ame_UF9aMqRA&libraries=places&callback=initMap" async defer></script>
