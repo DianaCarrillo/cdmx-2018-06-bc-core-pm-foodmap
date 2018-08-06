@@ -2,30 +2,72 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Leckerli+One|Tenali+Ramakrishna" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <title>Foodmap</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Leckerli+One|Tenali+Ramakrishna|Righteous" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <title>Foodmap</title>
 </head>
+
 <body>
-    <div id="map"></div>
+  <div id="map"></div>
+  <div class="container center col s12 m12 l12">
+    <div class "row">
+      <p class="label-select">¡Encuentra los restaurantes más cercanos!</p>
+      <div class="row col s6 m6 l6">
+        <input type="text" placeholder="¿Qué se te antoja hoy?">
+      </div>
+    </div>
+  </div>
 
-    <script>
-        let map;
+  <script>
+    let map;
+    let service;
+    let infowindow;
 
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 19.3911668, lng: -99.4238184},
-          zoom: 15
-        });
+    function initMap() {
+     let mapCDMX = new google.maps.LatLng(19.370026,-99.1702881);
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: mapCDMX,
+        zoom: 15
+      });
+
+      var request = {
+        location: mapCDMX,
+        radius: '500',
+        type: ['restaurant']
+      };
+      infowindow = new google.maps.InfoWindow();
+      service = new google.maps.places.PlacesService(map);
+      service.nearbySearch(request, callback);
+    }
+
+    function callback(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (let i = 0; i < results.length; i++) {
+          let place = results[i];
+          createMarker(place);
+        }
       }
-    </script>
+    }
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZInQn8sz4LQGT78cscX0ame_UF9aMqRA&callback=initMap" async
-        defer></script>
+    function createMarker(place){
+      var placeLoc= place.geometry.location;
+      var marker = new google.maps.Marker({
+        map: map,
+        position: placeLoc
+      });
+      google.maps.event.addListener(marker, 'click', function(){
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+      })
+    } 
+
+    // google.maps.event.DomListener(window,'load',initMap);
+  </script>
+<script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZInQn8sz4LQGT78cscX0ame_UF9aMqRA&libraries=places&callback=initMap" async defer></script>
 </body>
 
 </html>
