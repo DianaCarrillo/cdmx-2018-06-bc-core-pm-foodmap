@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <!-- <div id="map"></div> -->
+  <div id="map"></div>
   <div class="container center col s12 m12 l12">
     <div class "row">
       <p class="label-select">Encuentra los restaurantes más cercanos</p>
@@ -28,7 +28,7 @@
     let infowindow;
 
     function initMap() {
-     let mapCDMX = new google.maps.LatLng(19.3911668,-99.4238184);
+     let mapCDMX = new google.maps.LatLng(19.370026,-99.1702881);
       map = new google.maps.Map(document.getElementById('map'), {
         center: mapCDMX,
         zoom: 15
@@ -48,14 +48,21 @@
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (let i = 0; i < results.length; i++) {
           let place = results[i];
-          createMarker(results[i]);
+          createMarker(place);
         }
       }
     }
-  </script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZInQn8sz4LQGT78cscX0ame_UF9aMqRA&callback=initMap" async
-    defer></script>
+    function createMarker(place){
+      var placeLoc= place.geometry.location;
+      var marker = new google.maps.Marker({
+        map: map,
+        position: placeLoc
+      })
+    }
+    // google.maps.event.DomListener(window,'load',initMap);
+  </script>
+<script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZInQn8sz4LQGT78cscX0ame_UF9aMqRA&libraries=places&callback=initMap" async defer></script>
 </body>
 
 </html>
