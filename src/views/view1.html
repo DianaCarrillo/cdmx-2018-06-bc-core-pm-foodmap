@@ -26,15 +26,17 @@
     let map;
     let service;
     let infowindow;
+    let request;
+    let markers = [];
 
-    function initMap() {
+    function initMap ()  {
      let mapCDMX = new google.maps.LatLng(19.370026,-99.1702881);
       map = new google.maps.Map(document.getElementById('map'), {
         center: mapCDMX,
         zoom: 15
       });
 
-      var request = {
+        request = {
         location: mapCDMX,
         radius: '500',
         type: ['restaurant']
@@ -42,6 +44,17 @@
       infowindow = new google.maps.InfoWindow();
       service = new google.maps.places.PlacesService(map);
       service.nearbySearch(request, callback);
+      google.maps.event.addListener(map, 'click', function(event){
+        map.setCenter(event.latLng)
+        clearResults(markers)
+
+        let request = {
+          location: event.latLng,
+          radius: '500',
+          types: ['cafe']
+        };
+        service.nearbySearch(request,callback);
+      });
     }
 
     function callback(results, status) {
@@ -53,7 +66,7 @@
       }
     }
 
-    function createMarker(place){
+    function createMarker(place)  {
       var placeLoc= place.geometry.location;
       var marker = new google.maps.Marker({
         map: map,
@@ -63,7 +76,15 @@
         infowindow.setContent(place.name);
         infowindow.open(map, this);
       })
+      return marker;
     } 
+
+  function clearResults(markers) {
+    for (let marker in markers) {
+      markers[marker].setMap(null)
+    }
+    markers = []
+  }
 
     // google.maps.event.DomListener(window,'load',initMap);
   </script>
