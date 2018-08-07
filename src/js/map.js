@@ -85,6 +85,7 @@ function drawPlaces(place) {
             <p>Cerrado</p>
             </div>`
             containerModal.innerHTML = modal;
+        }
 
  })
 }
