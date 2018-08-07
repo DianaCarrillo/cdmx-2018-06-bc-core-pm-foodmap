@@ -6,3 +6,4 @@ setTimeout(()=>{
     location.href = 'views/view1.html';
  },2000); 
  
+//  document.addEventListener('DOMcontentLoaded', containerSplash);
