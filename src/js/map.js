@@ -38,20 +38,21 @@ function callback(results, status) {
             let place = results[i];
             createMarker(place);
             drawPlaces(place);
-            drawModalPopUp(place);
+            // drawModalPopUp(place);
             //   console.log(status);
         }
     }
 }
 
 function drawPlaces(place) {
+    // console.log(place.id);
     let nearByRestaurants = document.getElementById('contenedor-restaurantes-cercanos');
-    // console.log(place);
+ 
     let tbodyElement = document.createElement('tbody');
     let trElement = document.createElement('tr');
     let tdElementRestaurante = document.createElement('td');
     let tdElementRating = document.createElement('td');
-
+    tdElementRestaurante.id = `td-element-${place.id}`;
     trElement.appendChild(tdElementRestaurante);
     trElement.appendChild(tdElementRating);
     tbodyElement.appendChild(trElement);
@@ -62,22 +63,26 @@ function drawPlaces(place) {
     if (place.rating === undefined) {
         tdElementRating.innerHTML = ('-');
     } else if (place.rating < 3) {
-    tdElementRating.classList = 'badRestaurant';
+        tdElementRating.classList = 'badRestaurant';
     } else if (place.rating >= 4.5) {
-    // tdElementRating.classList = 'goodRestaurant';
-    let iconStar = document.createElement('i');
-    iconStar.classList = 'tiny material-icons goldStar';
-    iconStar.innerHTML = 'star';
-    tdElementRestaurante.appendChild(iconStar);
-    // tdElementR.classList = 'star';
+        tdElementRating.classList = 'goodRestaurant';
     }
-tdElementRestaurante.addEventListener('click', drawModalPopUp);
+
+    tdElementRestaurante.addEventListener('click', ()=>{
+        let containerModal = document.getElementById('containerModal')
+let modal = `<div class ="modal">
+<div class="modal-content">
+<h4>Modal Header</h4>
+<p>A bunch of text</p>
+</div>
+</div>`
+containerModal.innerHTML = modal;
+ })
 }
 
-function drawModalPopUp(place) {
-// console.log(place);
+// function drawModalPopUp(places) {
 
-}
+// }
 
 function createMarker(place) {
     var placeLoc = place.geometry.location;
@@ -98,3 +103,4 @@ function clearResults(markers) {
     }
     markers = []
 }
+
