@@ -62,19 +62,14 @@ const takeinputvalue = (place)=>{
 
     tdElementRestaurante.innerHTML = place.name;
     tdElementRating.innerHTML = place.rating;
-    // if (place.rating === undefined) {
-    //     tdElementRating.innerHTML = ('-');
-    // } else if (place.rating <= 3) {
-    //     tdElementRating.classList = 'badRestaurant';
-    // } else if (place.rating >= 4.5) {
-    //     tdElementRating.classList = 'goodRestaurant';
-    // }
-    
+ 
     buttonRating.addEventListener('click', ()=>{
     let valueInput = inputRating.value;
     if (place.rating == valueInput){
     tdElementRating.classList = 'color';
     tdElementRestaurante.classList ='color';
+    } else if(place.ratin != inputRating){ 
+        trElement.classList ='hidding'
     }
 })
 
@@ -115,68 +110,6 @@ const takeinputvalue = (place)=>{
   
     })
 }
-
-
-// const drawPlaces = (place) =>{
-    // let nearByRestaurants = document.getElementById('contenedor-restaurantes-cercanos');
-
-    // let tbodyElement = document.createElement('tbody');
-    // let trElement = document.createElement('tr');
-    // let tdElementRestaurante = document.createElement('td');
-    // let tdElementRating = document.createElement('td');
-    // // tdElementRestaurante.id = `td-element-${place.id}`;
-    // trElement.appendChild(tdElementRestaurante);
-    // trElement.appendChild(tdElementRating);
-    // tbodyElement.appendChild(trElement);
-    // nearByRestaurants.appendChild(tbodyElement);
-
-    // tdElementRestaurante.innerHTML = place.name;
-    // tdElementRating.innerHTML = place.rating;
-    // if (place.rating === undefined) {
-    //     tdElementRating.innerHTML = ('-');
-    // } else if (place.rating < 3) {
-    //     tdElementRating.classList = 'badRestaurant';
-    // } else if (place.rating >= 4.5) {
-    //     tdElementRating.classList = 'goodRestaurant';
-    // }
-
-    // tdElementRestaurante.addEventListener('click', () => {
-    //     // console.log(place.vicinity);
-    //     let arrayphotos = place.photos;
-    //     if (arrayphotos != null) {
-    //         arrayphotos.forEach(element => {
-    //             let photoPlace = element.html_attributions;
-    //             console.log(photoPlace);
-
-    //             let openNow = (place.opening_hours.open_now)
-    //             let containerModal = document.getElementById('containerModal')
-    //             if (openNow === true) {
-    //                 let modal = `
-    //                 <div class=" modal-content">
-    //         <h4>${place.name}</h4>
-    //         <p class = "address">${place.vicinity}</p>
-    //         <p> <strong>Rating:</strong> ${place.rating}</p>
-    //         <p>Abierto</p>
-    //         ${photoPlace}     
-    //         </div>`
-    //                 containerModal.innerHTML = modal;
-    //             } else if (openNow === false) {
-    //                 let modal = `
-                              
-    //                 <div class="  modal-content">
-    //         <h4>${place.name}</h4>
-    //         <p class = "address"> ${place.vicinity}</p>
-    //         <p> <strong>Rating:</strong> ${place.rating}</p>
-    //         <p>Cerrado</p>
-    //         ${photoPlace}          
-    //         </div>`
-    //                 containerModal.innerHTML = modal;
-    //             }
-    //         })
-    //     }
-  
-    // })
-// }
 
 
 function createMarker(place) {

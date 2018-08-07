@@ -48,6 +48,10 @@ button{
 }
 
 .color{
-    color:purple;
-    font-weight: bold;
+    color:black
+    /* font-weight: bold; */
+}
+
+.hidding{
+    display:none;
 }
