@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Leckerli+One|Tenali+Ramakrishna|Righteous" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
   <title>Foodmap</title>
 </head>
@@ -15,80 +16,26 @@
   <div id="map"></div>
   <div class="container center col s12 m12 l12">
     <div class "row">
-      <p class="label-select">¡Encuentra los restaurantes más cercanos!</p>
-      <div class="row col s6 m6 l6">
-        <input type="text" placeholder="¿Qué se te antoja hoy?">
-      </div>
+      <p class= "header1">¿Qué se te antoja hoy?</p>
+      <p class="header2">Tus restaurantes más cercanos :</p>
+
     </div>
   </div>
-
-  <script>
-    let map;
-    let service;
-    let infowindow;
-    let request;
-    let markers = [];
-
-    function initMap ()  {
-     let mapCDMX = new google.maps.LatLng(19.370026,-99.1702881);
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: mapCDMX,
-        zoom: 15
-      });
-
-        request = {
-        location: mapCDMX,
-        radius: '500',
-        type: ['restaurant']
-      };
-      infowindow = new google.maps.InfoWindow();
-      service = new google.maps.places.PlacesService(map);
-      service.nearbySearch(request, callback);
-      google.maps.event.addListener(map, 'click', function(event){
-        map.setCenter(event.latLng);
-        clearResults(markers); 
-
-        let request = {
-          location: event.latLng,
-          radius: '500',
-          types: ['cafe']
-        };
-        service.nearbySearch(request,callback);
-      });
-    }
-
-    function callback(results, status) {
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (let i = 0; i < results.length; i++) {
-          let place = results[i];
-          createMarker(place);
-        }
-      }
-    }
-
-    function createMarker(place)  {
-      var placeLoc= place.geometry.location;
-      var marker = new google.maps.Marker({
-        map: map,
-        position: placeLoc
-      });
-      google.maps.event.addListener(marker, 'click', function(){
-        infowindow.setContent(place.name);
-        infowindow.open(map, this);
-      })
-      return marker;
-    } 
-
-  function clearResults(markers) {
-    for (let marker in markers) {
-      markers[marker].setMap(null)
-    }
-    markers = []
-  }
-
-    // google.maps.event.DomListener(window,'load',initMap);
-  </script>
-<script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZInQn8sz4LQGT78cscX0ame_UF9aMqRA&libraries=places&callback=initMap" async defer></script>
+  <section>
+      <table class="container col s12 m12 l12" id="contenedor-restaurantes-cercanos">
+          <thead>
+            <tr>
+                <th>Restaurante</th>
+                <th>Rating</th>
+            </tr>
+          </thead>
+        </table>
+</section>
+<div id="containerModal">
+  </div>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZInQn8sz4LQGT78cscX0ame_UF9aMqRA&libraries=places&callback=initMap"
+    async defer></script>
+  <script type="text/javascript" src="../js/map.js"></script>
 </body>
 
 </html>
