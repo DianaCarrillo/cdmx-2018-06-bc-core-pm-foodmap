@@ -24,7 +24,11 @@ body {
     padding: 0;
 }
 
-.label-select{
+.header1{
+    font-size: 200%;
+    font-family: 'Righteous', cursive;
+}
+.header2{
     font-size: 100%;
     font-family: 'Righteous', cursive;
 }
@@ -43,6 +47,7 @@ body {
     color: rgb(151, 228, 35);
     font-weight: bold;
 }
-.goldStar{
-    color: #c0ca33;
+
+.address{
+    font-style: italic;
 }

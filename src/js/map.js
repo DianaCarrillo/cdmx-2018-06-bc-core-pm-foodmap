@@ -21,7 +21,7 @@ function initMap() {
     service.nearbySearch(request, callback);
     google.maps.event.addListener(map, 'click', function (event) {
         map.setCenter(event.latLng);
-        clearResults(markers);        
+        clearResults(markers);
 
         let request = {
             location: event.latLng,
@@ -45,17 +45,13 @@ function callback(results, status) {
 }
 
 function drawPlaces(place) {
-    let arrayphotos = place.photos;
-    arrayphotos.forEach(element => {
-      console.log(element.html_attributions);  
-    })
     let nearByRestaurants = document.getElementById('contenedor-restaurantes-cercanos');
- 
+
     let tbodyElement = document.createElement('tbody');
     let trElement = document.createElement('tr');
     let tdElementRestaurante = document.createElement('td');
     let tdElementRating = document.createElement('td');
-    // tdElementRestaurante.id = `td-element-${place.id}`;
+    tdElementRestaurante.id = `td-element-${place.id}`;
     trElement.appendChild(tdElementRestaurante);
     trElement.appendChild(tdElementRating);
     tbodyElement.appendChild(trElement);
@@ -71,27 +67,39 @@ function drawPlaces(place) {
         tdElementRating.classList = 'goodRestaurant';
     }
 
-    tdElementRestaurante.addEventListener('click', ()=>{
-        let openNow = (place.opening_hours.open_now)
-        let containerModal = document.getElementById('containerModal')
-        if (openNow === true){
-            let modal = `<div class="modal-content">
+    tdElementRestaurante.addEventListener('click', () => {
+        // console.log(place.vicinity);
+        let arrayphotos = place.photos;
+        if (arrayphotos != null) {
+            arrayphotos.forEach(element => {
+                let photoPlace = element.html_attributions;
+                console.log(photoPlace);
+
+                let openNow = (place.opening_hours.open_now)
+                let containerModal = document.getElementById('containerModal')
+                if (openNow === true) {
+                    let modal = `<div class="modal-content">
             <h4>${place.name}</h4>
+            <p class = "address">${place.vicinity}</p>
             <p> <strong>Rating:</strong> ${place.rating}</p>
             <p>Abierto</p>
-            <div>${place.photo}</div>
+            ${photoPlace}      
             </div>`
-            containerModal.innerHTML = modal;
-        }else if(openNow === false){
-            let modal = `<div class="modal-content">
+                    containerModal.innerHTML = modal;
+                } else if (openNow === false) {
+                    let modal = `<div class="modal-content">
             <h4>${place.name}</h4>
+            <p class = "address"> ${place.vicinity}</p>
             <p> <strong>Rating:</strong> ${place.rating}</p>
             <p>Cerrado</p>
+            ${photoPlace}            
             </div>`
-            containerModal.innerHTML = modal;
-        }
+                    containerModal.innerHTML = modal;
+                }
 
- })
+            })
+        }
+    })
 }
 
 // function drawModalPopUp(places) {
@@ -119,4 +127,3 @@ function clearResults(markers) {
     console.log(markers);
 
 }
-
