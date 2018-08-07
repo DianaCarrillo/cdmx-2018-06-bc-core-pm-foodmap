@@ -38,14 +38,11 @@ function callback (results, status) {
         for (let i = 0; i < results.length; i++) {
             let place = results[i];
             createMarker(place);
-            // drawPlaces(place)
-            takeinputvalue(place);
-            // drawModalPopUp(place);
-              console.log(results);
+            drawPlace(place);
         }
     }
 }
-const takeinputvalue = (place)=>{
+const drawPlace = (place)=>{
 
  let nearByRestaurants = document.getElementById('contenedor-restaurantes-cercanos');
  let inputRating = document.getElementById('rating-input');
@@ -62,7 +59,7 @@ const takeinputvalue = (place)=>{
 
     tdElementRestaurante.innerHTML = place.name;
     tdElementRating.innerHTML = place.rating;
- 
+    
     buttonRating.addEventListener('click', ()=>{
     let valueInput = inputRating.value;
     if (place.rating == valueInput){
