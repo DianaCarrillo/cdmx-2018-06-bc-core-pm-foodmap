@@ -21,7 +21,7 @@ function initMap() {
     service.nearbySearch(request, callback);
     google.maps.event.addListener(map, 'click', function (event) {
         map.setCenter(event.latLng);
-        clearResults(markers);
+        clearResults(markers);        
 
         let request = {
             location: event.latLng,
@@ -45,14 +45,14 @@ function callback(results, status) {
 }
 
 function drawPlaces(place) {
-    // console.log(place.id);
+    console.log(place.opening_hours);
     let nearByRestaurants = document.getElementById('contenedor-restaurantes-cercanos');
  
     let tbodyElement = document.createElement('tbody');
     let trElement = document.createElement('tr');
     let tdElementRestaurante = document.createElement('td');
     let tdElementRating = document.createElement('td');
-    tdElementRestaurante.id = `td-element-${place.id}`;
+    // tdElementRestaurante.id = `td-element-${place.id}`;
     trElement.appendChild(tdElementRestaurante);
     trElement.appendChild(tdElementRating);
     tbodyElement.appendChild(trElement);
@@ -69,14 +69,23 @@ function drawPlaces(place) {
     }
 
     tdElementRestaurante.addEventListener('click', ()=>{
+        let openNow = (place.opening_hours.open_now)
         let containerModal = document.getElementById('containerModal')
-let modal = `<div class ="modal">
-<div class="modal-content">
-<h4>Modal Header</h4>
-<p>A bunch of text</p>
-</div>
-</div>`
-containerModal.innerHTML = modal;
+        if (openNow === true){
+            let modal = `<div class="modal-content">
+            <h4>${place.name}</h4>
+            <p> <strong>Rating:</strong> ${place.rating}</p>
+            <p>Abierto</p>
+            </div>`
+            containerModal.innerHTML = modal;
+        }else if(openNow === false){
+            let modal = `<div class="modal-content">
+            <h4>${place.name}</h4>
+            <p> <strong>Rating:</strong> ${place.rating}</p>
+            <p>Cerrado</p>
+            </div>`
+            containerModal.innerHTML = modal;
+
  })
 }
 
@@ -102,5 +111,7 @@ function clearResults(markers) {
         markers[marker].setMap(null)
     }
     markers = []
+    console.log(markers);
+
 }
 
