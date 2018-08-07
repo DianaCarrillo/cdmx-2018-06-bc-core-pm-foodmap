@@ -38,16 +38,16 @@ body {
     margin: 10%;
 }
 
-.badRestaurant{
-    color: red;
-    font-weight: bold;
-}
-
-.goodRestaurant {
-    color: rgb(151, 228, 35);
-    font-weight: bold;
-}
 
 .address{
     font-style: italic;
+}
+
+button{
+    background-color: #ce93d8;
+}
+
+.color{
+    color:purple;
+    font-weight: bold;
 }

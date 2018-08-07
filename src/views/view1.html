@@ -14,14 +14,16 @@
 
 <body>
   <div id="map"></div>
+ 
   <div class="container center col s12 m12 l12">
     <div class "row">
-      <p class= "header1">¿Qué se te antoja hoy?</p>
-      <p class="header2">Tus restaurantes más cercanos :</p>
-
+        <p class= "header1">¿Qué se te antoja hoy?</p>
+        <p class="header2">Escribe un rating para filtrar los mejores restaurantes de la zona</p>
+        <input type="text" id="rating-input" placeholder="escribe el rating aquí">
     </div>
+    <button id="button-rating" type="button" class="waves-effect waves-light btn">BUSCAR POR RATING</button>
   </div>
-  <section>
+      <!-- <div class="input-field col s12"> -->
       <table class="container col s12 m12 l12" id="contenedor-restaurantes-cercanos">
           <thead>
             <tr>
@@ -30,9 +32,8 @@
             </tr>
           </thead>
         </table>
-</section>
-<div id="containerModal">
-  </div>
+<div id="containerModal"></div>
+  
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZInQn8sz4LQGT78cscX0ame_UF9aMqRA&libraries=places&callback=initMap"
     async defer></script>
   <script type="text/javascript" src="../js/map.js"></script>
