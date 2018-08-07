@@ -45,7 +45,10 @@ function callback(results, status) {
 }
 
 function drawPlaces(place) {
-    console.log(place.opening_hours);
+    let arrayphotos = place.photos;
+    arrayphotos.forEach(element => {
+      console.log(element.html_attributions);  
+    })
     let nearByRestaurants = document.getElementById('contenedor-restaurantes-cercanos');
  
     let tbodyElement = document.createElement('tbody');
@@ -76,6 +79,7 @@ function drawPlaces(place) {
             <h4>${place.name}</h4>
             <p> <strong>Rating:</strong> ${place.rating}</p>
             <p>Abierto</p>
+            <div>${place.photo}</div>
             </div>`
             containerModal.innerHTML = modal;
         }else if(openNow === false){
