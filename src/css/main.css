@@ -2,6 +2,10 @@
     font-size: 500%;
     font-family: 'Leckerli One', cursive;
 }
+.foodmap-logo2 {
+    font-size: 300%;
+    font-family: 'Leckerli One', cursive;
+}
 
 .foodm-cont {
     margin-top: 50%;
@@ -12,7 +16,7 @@
 
 #map {
     height: 40%;
-    margin: 3% 3%;
+    margin: 5% 5%;
 }
 
 /* Optional: Makes the sample page fill the window. */
@@ -25,7 +29,7 @@ body {
 }
 
 .header1{
-    font-size: 200%;
+    font-size: 150%;
     font-family: 'Righteous', cursive;
 }
 .header2{
@@ -49,7 +53,6 @@ button{
 
 .color{
     color:black
-    /* font-weight: bold; */
 }
 
 .hidding{
