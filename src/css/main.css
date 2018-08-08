@@ -47,8 +47,9 @@ body {
     font-style: italic;
 }
 
-button{
-    background-color: #ce93d8;
+#button-rating{
+    margin-bottom: 10%;
+    padding-bottom: 3%;
 }
 
 .color{
