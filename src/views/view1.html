@@ -16,6 +16,7 @@
   <header class= "container center">
   <div class="foodmap-logo2">foodmap</div>
 </header>
+
   <div id="map"></div>
  
   <div class="container center col s12 m12 l12">
@@ -24,8 +25,7 @@
         <p class="header2">Escribe un rating para ver los mejores restaurantes de la zona</p>
         <input type="text" id="rating-input" placeholder="escribe el rating aquí">
     </div>
-    <button id="button-rating" type="button" class="waves-effect waves-light btn">BUSCAR POR RATING</button>
-  </div>
+    <button id="button-rating" type="button" class="btn left blue lighten-2">Buscar</button>
       <!-- <div class="input-field col s12"> -->
       <table class="container col s12 m12 l12" id="contenedor-restaurantes-cercanos">
           <thead>
@@ -36,7 +36,9 @@
           </thead>
         </table>
 <div id="containerModal"></div>
-  
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZInQn8sz4LQGT78cscX0ame_UF9aMqRA&libraries=places&callback=initMap"
     async defer></script>
   <script type="text/javascript" src="../js/map.js"></script>
