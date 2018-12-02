@@ -56,10 +56,11 @@ function callback (results, status) {
 const drawPlace = (place)=>{
     let tbodyElement = document.createElement('tbody');
     let trElement = document.createElement('tr');
-    let tdElementRestaurante = document.createElement('td');
+    let tdElementRestaurante = document.createElement('a');
+    tdElementRestaurante.setAttribute('href', '#modal1-${place.id}')
     let tdElementRating = document.createElement('td');
-
-    // tdElementRestaurante.id = `td-element-${place.id}`;
+   
+    tdElementRestaurante.id = `td-element-${place.id}`;
     trElement.appendChild(tdElementRestaurante);
     trElement.appendChild(tdElementRating);
     tbodyElement.appendChild(trElement);
@@ -81,7 +82,7 @@ const drawPlace = (place)=>{
                 let openNow = (place.opening_hours.open_now)
                 let containerModal = document.getElementById('containerModal')
                 if (openNow === true) {
-                    let modal = `<div id="modal1" class="modal">
+                    let modal = `<div id='td-element-${place.id}'>
                                     <div class=" modal-content">
                                         <h4>${place.name}</h4>
                                         <p class = "address">${place.vicinity}</p>
