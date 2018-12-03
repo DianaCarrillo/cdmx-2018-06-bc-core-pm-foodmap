@@ -59,3 +59,10 @@ body {
 .hidding{
     display:none;
 }
+
+#containerModal{
+    background-color:#f3f3f3;
+    margin-top:20%;
+    margin-bottom:10%;
+    padding:2%;
+}
