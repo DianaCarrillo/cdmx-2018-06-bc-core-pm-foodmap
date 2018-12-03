@@ -30,11 +30,10 @@ body {
 
 .header1{
     font-size: 150%;
-    font-family: 'Righteous', cursive;
 }
 .header2{
     font-size: 100%;
-    font-family: 'Righteous', cursive;
+    font-weight: bold;
 }
 
 .restaurant-list{
